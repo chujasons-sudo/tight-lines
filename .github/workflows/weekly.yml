@@ -1,0 +1,29 @@
+name: Weekly Fishing Digest
+
+on:
+  schedule:
+    # 6:00 PM Pacific — runs at 01:00 UTC Monday (PDT, Mar–Nov)
+    # Shifts to 5:00 PM Pacific in winter (PST, Nov–Mar)
+    - cron: "0 1 * * 1"
+  workflow_dispatch: # manual trigger from GitHub UI
+
+jobs:
+  send-digest:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Send digest
+        env:
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+        run: python digest.py
