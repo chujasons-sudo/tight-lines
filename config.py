@@ -9,7 +9,7 @@
 import os
 
 RECIPIENT_EMAIL = "chu.jason.s@gmail.com"  # TODO: fill in your email address
-FROM_EMAIL = RECIPIENT_EMAIL
+FROM_EMAIL = "onboarding@resend.dev"
 
 HOME_LAT = 47.8107
 HOME_LON = -122.3774
